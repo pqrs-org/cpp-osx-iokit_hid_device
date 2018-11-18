@@ -3,13 +3,13 @@
 
 # cpp-osx-iokit_hid_device
 
-A reliable alternative of IOHIDManager.
+A wrapper of `IOHIDDevice`.
 
 ## Requirements
 
 cpp-osx-iokit_hid_device depends the following classes.
 
-- [pqrs::cf_string](https://github.com/pqrs-org/cpp-cf_number)
+- [pqrs::cf_string](https://github.com/pqrs-org/cpp-cf_string)
 
 ## Install
 
