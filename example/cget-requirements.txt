@@ -1,0 +1,2 @@
+pqrs-org/cpp-cf_string
+pqrs-org/cpp-osx-iokit_hid_manager
