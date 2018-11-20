@@ -26,7 +26,7 @@ public:
     return device_;
   }
 
-  std::optional<int64_t> find_number_property(CFStringRef key) const {
+  std::optional<int64_t> find_int64_property(CFStringRef key) const {
     if (device_) {
       auto property = IOHIDDeviceGetProperty(*device_, key);
       if (property) {
