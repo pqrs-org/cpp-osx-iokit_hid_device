@@ -23,10 +23,10 @@ int main(void) {
   auto hid_manager = std::make_unique<pqrs::osx::iokit_hid_manager>(pqrs::dispatcher::extra::get_shared_dispatcher(),
                                                                     matching_dictionaries);
 
-  hid_manager->device_detected.connect([](auto&& registry_entry_id, auto&& device_ptr) {
+  hid_manager->device_matched.connect([](auto&& registry_entry_id, auto&& device_ptr) {
     if (device_ptr) {
       auto hid_device = pqrs::osx::iokit_hid_device(*device_ptr);
-      std::cout << "device_detected registry_entry_id:" << registry_entry_id << std::endl;
+      std::cout << "device_matched registry_entry_id:" << registry_entry_id << std::endl;
       if (auto manufacturer = hid_device.find_string_property(CFSTR(kIOHIDManufacturerKey))) {
         std::cout << "  manufacturer:" << *manufacturer << std::endl;
       }
