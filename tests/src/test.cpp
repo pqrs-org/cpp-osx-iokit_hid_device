@@ -9,4 +9,5 @@ TEST_CASE("iokit_hid_device") {
   REQUIRE(!hid_device.get_device());
   REQUIRE(hid_device.find_int64_property(CFSTR(kIOHIDVendorIDKey)) == std::nullopt);
   REQUIRE(hid_device.find_string_property(CFSTR(kIOHIDManufacturerKey)) == std::nullopt);
+  REQUIRE(hid_device.make_elements().empty());
 }

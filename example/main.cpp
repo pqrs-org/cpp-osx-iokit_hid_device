@@ -1,3 +1,4 @@
+#include <IOKit/hid/IOHIDElement.h>
 #include <IOKit/hid/IOHIDUsageTables.h>
 #include <csignal>
 #include <pqrs/osx/iokit_hid_device.hpp>
@@ -39,6 +40,15 @@ int main(void) {
       if (auto product_id = hid_device.find_int64_property(CFSTR(kIOHIDProductIDKey))) {
         std::cout << "  product_id:" << *product_id << std::endl;
       }
+
+#if 0
+      std::cout << "  ";
+      for (const auto& e : hid_device.make_elements()) {
+        std::cout << IOHIDElementGetUsagePage(*e) << "," << IOHIDElementGetUsage(*e)
+                  << " (" << IOHIDElementGetLogicalMin(*e) << " - " << IOHIDElementGetLogicalMax(*e) << "), ";
+      }
+      std::cout << std::endl;
+#endif
     }
   });
 

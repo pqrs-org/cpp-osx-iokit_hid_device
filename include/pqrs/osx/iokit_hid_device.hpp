@@ -51,6 +51,25 @@ public:
     return std::nullopt;
   }
 
+  std::vector<pqrs::cf_ptr<IOHIDElementRef>> make_elements(void) {
+    std::vector<pqrs::cf_ptr<IOHIDElementRef>> result;
+
+    if (device_) {
+      if (auto elements = IOHIDDeviceCopyMatchingElements(*device_, nullptr, kIOHIDOptionsTypeNone)) {
+        for (CFIndex i = 0; i < CFArrayGetCount(elements); ++i) {
+          auto e = static_cast<IOHIDElementRef>(const_cast<void*>(CFArrayGetValueAtIndex(elements, i)));
+          if (e) {
+            result.emplace_back(e);
+          }
+        }
+
+        CFRelease(elements);
+      }
+    }
+
+    return result;
+  }
+
 private:
   cf_ptr<IOHIDDeviceRef> device_;
 };
