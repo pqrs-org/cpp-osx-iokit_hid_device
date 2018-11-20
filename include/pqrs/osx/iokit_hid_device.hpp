@@ -6,9 +6,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 // (See http://www.boost.org/LICENSE_1_0.txt)
 
-// `pqrs::osx::iokit_hid_device` can be used safely in a multi-threaded environment.
-
 #include <IOKit/hid/IOHIDDevice.h>
+#include <IOKit/hid/IOHIDQueue.h>
 #include <optional>
 #include <pqrs/cf_string.hpp>
 #include <pqrs/osx/iokit_types.hpp>
@@ -123,6 +122,20 @@ public:
         }
 
         CFRelease(elements);
+      }
+    }
+
+    return result;
+  }
+
+  cf_ptr<IOHIDQueueRef> make_queue(CFIndex depth) const {
+    cf_ptr<IOHIDQueueRef> result;
+
+    if (device_) {
+      if (auto queue = IOHIDQueueCreate(kCFAllocatorDefault, *device_, depth, kIOHIDOptionsTypeNone)) {
+        result = queue;
+
+        CFRelease(queue);
       }
     }
 
