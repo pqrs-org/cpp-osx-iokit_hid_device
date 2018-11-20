@@ -10,6 +10,7 @@ A wrapper of `IOHIDDevice`.
 cpp-osx-iokit_hid_device depends the following classes.
 
 - [pqrs::cf_string](https://github.com/pqrs-org/cpp-cf_string)
+- [pqrs::osx::iokit_types](https://github.com/pqrs-org/cpp-osx-iokit_types)
 
 ## Install
 

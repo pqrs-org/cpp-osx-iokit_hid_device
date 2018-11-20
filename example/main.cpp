@@ -28,16 +28,19 @@ int main(void) {
     if (device_ptr) {
       auto hid_device = pqrs::osx::iokit_hid_device(*device_ptr);
       std::cout << "device_matched registry_entry_id:" << registry_entry_id << std::endl;
-      if (auto manufacturer = hid_device.find_string_property(CFSTR(kIOHIDManufacturerKey))) {
+      if (auto manufacturer = hid_device.find_manufacturer()) {
         std::cout << "  manufacturer:" << *manufacturer << std::endl;
       }
-      if (auto product = hid_device.find_string_property(CFSTR(kIOHIDProductKey))) {
+      if (auto product = hid_device.find_product()) {
         std::cout << "  product:" << *product << std::endl;
       }
-      if (auto vendor_id = hid_device.find_int64_property(CFSTR(kIOHIDVendorIDKey))) {
+      if (auto serial_number = hid_device.find_serial_number()) {
+        std::cout << "  serial_number:" << *serial_number << std::endl;
+      }
+      if (auto vendor_id = hid_device.find_vendor_id()) {
         std::cout << "  vendor_id:" << *vendor_id << std::endl;
       }
-      if (auto product_id = hid_device.find_int64_property(CFSTR(kIOHIDProductIDKey))) {
+      if (auto product_id = hid_device.find_product_id()) {
         std::cout << "  product_id:" << *product_id << std::endl;
       }
 
