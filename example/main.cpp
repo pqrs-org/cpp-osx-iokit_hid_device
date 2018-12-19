@@ -55,6 +55,10 @@ int main(void) {
     }
   });
 
+  hid_manager->device_terminated.connect([](auto&& registry_entry_id) {
+    std::cout << "device_terminated registry_entry_id:" << registry_entry_id << std::endl;
+  });
+
   hid_manager->error_occurred.connect([](auto&& message, auto&& iokit_return) {
     std::cerr << "error_occurred " << message << " " << iokit_return << std::endl;
   });
