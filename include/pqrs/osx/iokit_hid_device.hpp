@@ -9,6 +9,7 @@
 #include <IOKit/hid/IOHIDDevice.h>
 #include <IOKit/hid/IOHIDQueue.h>
 #include <optional>
+#include <pqrs/cf_array.hpp>
 #include <pqrs/cf_string.hpp>
 #include <pqrs/osx/iokit_types.hpp>
 
@@ -115,7 +116,7 @@ public:
 
       if (auto elements = IOHIDDeviceCopyMatchingElements(*device_, nullptr, kIOHIDOptionsTypeNone)) {
         for (CFIndex i = 0; i < CFArrayGetCount(elements); ++i) {
-          auto e = static_cast<IOHIDElementRef>(const_cast<void*>(CFArrayGetValueAtIndex(elements, i)));
+          auto e = get_cf_array_value<IOHIDElementRef>(elements, i);
           if (e) {
             result.emplace_back(e);
           }
