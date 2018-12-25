@@ -20,7 +20,7 @@ cpp-osx-iokit_hid_device depends the following classes.
 You can install `include/pqrs` by using [cget](https://github.com/pfultz2/cget).
 
 ```shell
-cget install pqrs-org/cpp-cget-recipes
+cget install pqrs-org/cget-recipes
 cget install pqrs-org/cpp-osx-iokit_hid_device
 ```
 
