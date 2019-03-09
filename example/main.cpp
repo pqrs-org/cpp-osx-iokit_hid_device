@@ -44,6 +44,12 @@ int main(void) {
       if (auto product_id = hid_device.find_product_id()) {
         std::cout << "  product_id:" << *product_id << std::endl;
       }
+      if (auto location_id = hid_device.find_location_id()) {
+        std::cout << "  location_id:" << *location_id << std::endl;
+      }
+      if (auto country_code = hid_device.find_country_code()) {
+        std::cout << "  country_code:" << *country_code << std::endl;
+      }
 
 #if 0
       std::cout << "  ";

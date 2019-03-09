@@ -77,6 +77,13 @@ public:
     return std::nullopt;
   }
 
+  std::optional<iokit_hid_country_code> find_country_code(void) const {
+    if (auto value = find_int64_property(CFSTR(kIOHIDCountryCodeKey))) {
+      return iokit_hid_country_code(*value);
+    }
+    return std::nullopt;
+  }
+
   std::optional<std::string> find_manufacturer(void) const {
     return find_string_property(CFSTR(kIOHIDManufacturerKey));
   }
