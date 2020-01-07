@@ -29,6 +29,10 @@ int main(void) {
     if (device_ptr) {
       auto hid_device = pqrs::osx::iokit_hid_device(*device_ptr);
       std::cout << "device_matched registry_entry_id:" << registry_entry_id << std::endl;
+      if (hid_device.conforms_to(pqrs::osx::iokit_hid_usage_page_generic_desktop,
+                                 pqrs::osx::iokit_hid_usage_generic_desktop_keyboard)) {
+        std::cout << "  conforms_to keyboard" << std::endl;
+      }
       if (auto manufacturer = hid_device.find_manufacturer()) {
         std::cout << "  manufacturer:" << *manufacturer << std::endl;
       }

@@ -27,6 +27,18 @@ public:
     return device_;
   }
 
+  // Note:
+  // Input Monitoring permission user approval is required since macOS Catalina (10.15).
+  bool conforms_to(iokit_hid_usage_page usage_page, iokit_hid_usage usage) const {
+    if (device_) {
+      return IOHIDDeviceConformsTo(*device_,
+                                   type_safe::get(usage_page),
+                                   type_safe::get(usage));
+    }
+
+    return false;
+  }
+
   std::optional<int64_t> find_int64_property(CFStringRef key) const {
     if (device_) {
       auto property = IOHIDDeviceGetProperty(*device_, key);
@@ -100,6 +112,8 @@ public:
     return find_string_property(CFSTR(kIOHIDTransportKey));
   }
 
+  // Note:
+  // Input Monitoring permission user approval is required since macOS Catalina (10.15).
   std::vector<cf::cf_ptr<IOHIDElementRef>> make_elements(void) {
     std::vector<cf::cf_ptr<IOHIDElementRef>> result;
 
