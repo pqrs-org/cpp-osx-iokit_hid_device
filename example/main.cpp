@@ -19,7 +19,7 @@ int main(void) {
   std::vector<pqrs::cf::cf_ptr<CFDictionaryRef>> matching_dictionaries{
       pqrs::osx::iokit_hid_manager::make_matching_dictionary(
           pqrs::osx::iokit_hid_usage_page::generic_desktop,
-          pqrs::osx::iokit_hid_usage_generic::desktop_keyboard),
+          pqrs::osx::iokit_hid_usage::generic_desktop::keyboard),
   };
 
   auto hid_manager = std::make_unique<pqrs::osx::iokit_hid_manager>(dispatcher,
