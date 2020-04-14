@@ -1,6 +1,6 @@
 #pragma once
 
-// pqrs::osx::iokit_hid_device v2.7
+// pqrs::osx::iokit_hid_device v3.0
 
 // (C) Copyright Takayama Fumihiko 2018.
 // Distributed under the Boost Software License, Version 1.0.
