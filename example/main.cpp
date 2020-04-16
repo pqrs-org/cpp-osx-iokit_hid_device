@@ -18,8 +18,8 @@ int main(void) {
 
   std::vector<pqrs::cf::cf_ptr<CFDictionaryRef>> matching_dictionaries{
       pqrs::osx::iokit_hid_manager::make_matching_dictionary(
-          pqrs::osx::iokit_hid_usage_page::generic_desktop,
-          pqrs::osx::iokit_hid_usage::generic_desktop::keyboard),
+          pqrs::hid::usage_page::generic_desktop,
+          pqrs::hid::usage::generic_desktop::keyboard),
   };
 
   auto hid_manager = std::make_unique<pqrs::osx::iokit_hid_manager>(dispatcher,
@@ -29,8 +29,8 @@ int main(void) {
     if (device_ptr) {
       auto hid_device = pqrs::osx::iokit_hid_device(*device_ptr);
       std::cout << "device_matched registry_entry_id:" << registry_entry_id << std::endl;
-      if (hid_device.conforms_to(pqrs::osx::iokit_hid_usage_page::generic_desktop,
-                                 pqrs::osx::iokit_hid_usage::generic_desktop::keyboard)) {
+      if (hid_device.conforms_to(pqrs::hid::usage_page::generic_desktop,
+                                 pqrs::hid::usage::generic_desktop::keyboard)) {
         std::cout << "  conforms_to keyboard" << std::endl;
       }
       if (auto manufacturer = hid_device.find_manufacturer()) {

@@ -11,6 +11,7 @@ cpp-osx-iokit_hid_device depends the following classes.
 
 - [pqrs::cf::array](https://github.com/pqrs-org/cpp-cf-array)
 - [pqrs::cf::string](https://github.com/pqrs-org/cpp-cf-string)
+- [pqrs::hid](https://github.com/pqrs-org/cpp-hid)
 - [pqrs::osx::iokit_types](https://github.com/pqrs-org/cpp-osx-iokit_types)
 
 ## Install
