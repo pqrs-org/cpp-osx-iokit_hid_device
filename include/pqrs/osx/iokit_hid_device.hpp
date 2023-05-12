@@ -113,6 +113,10 @@ public:
     return find_string_property(CFSTR(kIOHIDTransportKey));
   }
 
+  std::optional<std::string> find_device_address(void) const {
+    return find_string_property(CFSTR("DeviceAddress"));
+  }
+
   // Note:
   // Input Monitoring permission user approval is required since macOS Catalina (10.15).
   std::vector<cf::cf_ptr<IOHIDElementRef>> make_elements(void) {
