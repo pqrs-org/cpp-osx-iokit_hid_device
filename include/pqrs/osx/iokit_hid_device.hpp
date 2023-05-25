@@ -22,7 +22,7 @@ class iokit_hid_device final {
 public:
   iokit_hid_device(IOHIDDeviceRef device)
       : device_(device),
-        service_(IOHIDDeviceGetService(device)),
+        service_(device ? IOHIDDeviceGetService(device) : IO_OBJECT_NULL),
         registry_entry_(service_) {
   }
 
