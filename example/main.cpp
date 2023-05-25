@@ -21,6 +21,14 @@ int main(void) {
       pqrs::osx::iokit_hid_manager::make_matching_dictionary(
           pqrs::hid::usage_page::generic_desktop,
           pqrs::hid::usage::generic_desktop::keyboard),
+
+      pqrs::osx::iokit_hid_manager::make_matching_dictionary(
+          pqrs::hid::usage_page::generic_desktop,
+          pqrs::hid::usage::generic_desktop::mouse),
+
+      pqrs::osx::iokit_hid_manager::make_matching_dictionary(
+          pqrs::hid::usage_page::generic_desktop,
+          pqrs::hid::usage::generic_desktop::pointer),
   };
 
   auto hid_manager = std::make_unique<pqrs::osx::iokit_hid_manager>(dispatcher,
@@ -55,6 +63,9 @@ int main(void) {
       }
       if (auto country_code = hid_device.find_country_code()) {
         std::cout << "  country_code:" << *country_code << std::endl;
+      }
+      if (auto device_address = hid_device.find_device_address()) {
+        std::cout << "  device_address:" << *device_address << std::endl;
       }
 
 #if 0
