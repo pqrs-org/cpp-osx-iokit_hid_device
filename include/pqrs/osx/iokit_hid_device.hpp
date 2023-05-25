@@ -12,13 +12,18 @@
 #include <pqrs/cf/array.hpp>
 #include <pqrs/cf/string.hpp>
 #include <pqrs/hid.hpp>
+#include <pqrs/osx/iokit_object_ptr.hpp>
+#include <pqrs/osx/iokit_registry_entry.hpp>
 #include <pqrs/osx/iokit_types.hpp>
 
 namespace pqrs {
 namespace osx {
 class iokit_hid_device final {
 public:
-  iokit_hid_device(IOHIDDeviceRef device) : device_(device) {
+  iokit_hid_device(IOHIDDeviceRef device)
+      : device_(device),
+        service_(IOHIDDeviceGetService(device)),
+        registry_entry_(service_) {
   }
 
   virtual ~iokit_hid_device(void) {
@@ -26,6 +31,14 @@ public:
 
   cf::cf_ptr<IOHIDDeviceRef> get_device(void) const {
     return device_;
+  }
+
+  iokit_object_ptr get_service(void) const {
+    return service_;
+  }
+
+  iokit_registry_entry get_registry_entry(void) const {
+    return registry_entry_;
   }
 
   // Note:
@@ -171,6 +184,8 @@ public:
 
 private:
   cf::cf_ptr<IOHIDDeviceRef> device_;
+  iokit_object_ptr service_;
+  iokit_registry_entry registry_entry_;
 };
 } // namespace osx
 } // namespace pqrs
