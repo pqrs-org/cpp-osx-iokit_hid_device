@@ -21,9 +21,7 @@ namespace pqrs::osx {
 class iokit_hid_device final {
 public:
   iokit_hid_device(IOHIDDeviceRef device)
-      : device_(device),
-        service_(device ? IOHIDDeviceGetService(device) : IO_OBJECT_NULL),
-        registry_entry_(service_) {
+      : device_(device) {
   }
 
   ~iokit_hid_device() = default;
@@ -223,7 +221,8 @@ private:
   }
 
   cf::cf_ptr<IOHIDDeviceRef> device_;
-  iokit_object_ptr service_;
-  iokit_registry_entry registry_entry_;
+
+  iokit_object_ptr service_{device_ ? IOHIDDeviceGetService(device_.get()) : IO_OBJECT_NULL};
+  iokit_registry_entry registry_entry_{service_};
 };
 } // namespace pqrs::osx
