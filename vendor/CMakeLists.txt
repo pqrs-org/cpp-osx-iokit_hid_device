@@ -14,6 +14,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/cpm-cmake-package-lock/cmake/dependency.cmake
 copy_vendor_package(pqrs_cf_array)
 copy_vendor_package(pqrs_cf_string)
 copy_vendor_package(pqrs_hid)
+copy_vendor_package(pqrs_osx_auto)
 copy_vendor_package(pqrs_osx_iokit_hid_manager)
 copy_vendor_package(pqrs_osx_iokit_registry_entry)
 copy_vendor_package(pqrs_osx_iokit_types)
